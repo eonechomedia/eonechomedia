@@ -1,0 +1,602 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg: #FAFAF7;
+  --white: #FFFFFF;
+  --ink: #1C1C1E;
+  --ink2: #3A3A3C;
+  --muted: #8E8E93;
+  --sage: #B8C9B0;
+  --sage-light: #E8F0E5;
+  --peach: #F2C4A8;
+  --peach-light: #FBF0E8;
+  --sky: #A8C4D4;
+  --sky-light: #E4F0F6;
+  --rose: #D4A0A8;
+  --rose-light: #F5E8EA;
+  --lemon: #E8D88A;
+  --lemon-light: #FAF6DC;
+  --lavender: #C0AED4;
+  --lavender-light: #EDE8F5;
+  --accent: #D4622A;
+  --accent2: #2A6B4A;
+  --border: rgba(28,28,30,0.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 48px;position:sticky;top:0;z-index:100;
+  background:rgba(250,250,247,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-.2px;}
+.logo span{color:var(--accent);font-style:italic;}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;cursor:pointer;transition:color .2s;}
+.nav-links a:hover{color:var(--ink);}
+.nav-cta{background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 22px;border-radius:100px;border:none;cursor:pointer;transition:opacity .15s;}
+.nav-cta:hover{opacity:.85;}
+
+/* HERO */
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:92vh;padding:0 0 0 48px;
+  position:relative;overflow:hidden;align-items:stretch;
+}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px 0;z-index:2;}
+.hero-right{
+  position:relative;
+  background:linear-gradient(135deg,#F5EDE4 0%,#EAE4F0 50%,#DDF0EA 100%);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+
+/* 3D SCENE */
+.scene-3d{
+  width:100%;height:100%;
+  perspective:900px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.cards-wrap{
+  position:relative;
+  width:300px;height:420px;
+  transform-style:preserve-3d;
+  animation:float-scene 6s ease-in-out infinite;
+}
+@keyframes float-scene{
+  0%,100%{transform:rotateX(6deg) rotateY(-10deg);}
+  50%{transform:rotateX(2deg) rotateY(-6deg);}
+}
+
+.img-card{
+  position:absolute;border-radius:20px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(28,28,30,.18),0 4px 12px rgba(28,28,30,.08);
+  transform-style:preserve-3d;transition:transform .4s ease;
+  cursor:pointer;
+}
+.img-card img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-card .card-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 16px 14px;
+  background:linear-gradient(to top,rgba(28,28,30,.75) 0%,transparent 100%);
+  color:#fff;font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;
+}
+
+.card-back{
+  width:260px;height:340px;
+  top:30px;left:10px;
+  background:var(--peach-light);
+  transform:translateZ(-40px) rotate(-4deg);
+  animation:sway-back 5s ease-in-out infinite;
+  border:1px solid rgba(28,28,30,.05);
+}
+@keyframes sway-back{0%,100%{transform:translateZ(-40px) rotate(-4deg);}50%{transform:translateZ(-38px) rotate(-3deg);}}
+
+.card-mid{
+  width:260px;height:340px;
+  top:16px;left:22px;
+  transform:translateZ(-18px) rotate(1.5deg);
+  animation:sway-mid 5s ease-in-out infinite 0.3s;
+}
+@keyframes sway-mid{0%,100%{transform:translateZ(-18px) rotate(1.5deg);}50%{transform:translateZ(-14px) rotate(1deg);}}
+
+.card-front{
+  width:260px;height:340px;
+  top:0;left:36px;
+  transform:translateZ(0px);
+  animation:sway-front 5s ease-in-out infinite 0.6s;
+}
+@keyframes sway-front{0%,100%{transform:translateZ(0px) rotate(0deg);}50%{transform:translateZ(4px) rotate(-.5deg);}}
+
+/* Floating badge chips */
+.float-chip{
+  position:absolute;background:#fff;border-radius:100px;
+  padding:8px 14px;display:flex;align-items:center;gap:8px;
+  box-shadow:0 8px 24px rgba(28,28,30,.12);
+  font-size:11px;font-weight:500;color:var(--ink);
+  animation:chip-float 4s ease-in-out infinite;
+  white-space:nowrap;
+}
+.chip-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.chip1{top:18%;right:4%;animation-delay:0s;}
+.chip2{bottom:28%;right:2%;animation-delay:1.2s;}
+.chip3{bottom:14%;left:6%;animation-delay:2.1s;}
+@keyframes chip-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+
+/* bg blobs */
+.hero-blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;pointer-events:none;}
+.hb1{width:340px;height:340px;background:var(--lavender);top:-80px;right:60px;}
+.hb2{width:220px;height:220px;background:var(--sage);bottom:20px;right:200px;}
+.hb3{width:160px;height:160px;background:var(--peach);bottom:80px;right:30px;}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--accent2);background:var(--sage-light);padding:6px 14px;border-radius:100px;margin-bottom:24px;width:fit-content;}
+.eyebrow-dot{width:5px;height:5px;background:var(--accent2);border-radius:50%;}
+
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5.5vw,68px);font-weight:600;line-height:1.05;color:var(--ink);margin-bottom:22px;letter-spacing:-.5px;}
+.hero-h1 em{color:var(--accent);font-style:italic;}
+.hero-h1 .ruled{position:relative;display:inline-block;}
+.hero-h1 .ruled::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:2px;background:var(--sage);border-radius:2px;}
+
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:440px;margin-bottom:40px;font-weight:400;}
+.hero-sub strong{color:var(--ink2);font-weight:500;}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
+.btn-dark{background:var(--ink);color:#fff;font-size:14px;font-weight:500;padding:14px 30px;border-radius:100px;border:none;cursor:pointer;transition:transform .15s,opacity .15s;}
+.btn-dark:hover{transform:translateY(-1px);opacity:.9;}
+.btn-line{background:transparent;color:var(--ink);font-size:14px;font-weight:500;padding:13px 28px;border-radius:100px;border:1.5px solid rgba(28,28,30,.2);cursor:pointer;transition:border-color .15s,background .15s;}
+.btn-line:hover{border-color:var(--ink);background:rgba(28,28,30,.04);}
+
+.hero-stats{display:flex;gap:32px;}
+.stat{border-left:2px solid var(--border);padding-left:20px;}
+.stat:first-child{border:none;padding-left:0;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--ink);line-height:1;}
+.stat-l{font-size:11px;color:var(--muted);margin-top:3px;font-weight:400;}
+
+/* MARQUEE */
+.marquee-strip{background:var(--ink);padding:14px 0;overflow:hidden;white-space:nowrap;}
+.marquee-inner{display:inline-flex;gap:0;animation:marquee 28s linear infinite;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{font-size:13px;font-weight:500;color:rgba(255,255,255,.55);padding:0 32px;display:inline-flex;align-items:center;gap:12px;}
+.marquee-dot{width:4px;height:4px;background:var(--peach);border-radius:50%;flex-shrink:0;}
+
+/* NICHES */
+.niches{padding:100px 48px;}
+.niches-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;gap:32px;}
+.niches-intro{max-width:480px;}
+.niches-note{font-size:14px;color:var(--muted);max-width:260px;text-align:right;line-height:1.6;}
+.niche-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.niche-tile{border-radius:16px;padding:20px 18px;cursor:pointer;transition:transform .2s;}
+.niche-tile:hover{transform:translateY(-3px);}
+.niche-icon{width:36px;height:36px;border-radius:10px;background:rgba(28,28,30,.06);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.niche-icon svg{width:16px;height:16px;}
+.niche-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.niche-sub{font-size:11px;color:var(--muted);line-height:1.45;}
+.niche-more{border-radius:16px;padding:20px 18px;background:var(--ink);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;transition:opacity .15s;}
+.niche-more:hover{opacity:.88;}
+.niche-more-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:var(--peach);line-height:1;}
+.niche-more-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;}
+
+/* SERVICES */
+.services{background:var(--white);padding:100px 48px;}
+.services-layout{display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:start;margin-top:56px;}
+.services-sticky{position:sticky;top:90px;}
+.services-sticky p{font-size:14px;color:var(--muted);line-height:1.65;margin-top:14px;}
+.services-sticky .btn-dark{margin-top:24px;display:inline-block;}
+.svc-list{display:flex;flex-direction:column;gap:14px;}
+.svc-row{border-radius:20px;border:1px solid var(--border);padding:28px 30px;background:var(--bg);transition:border-color .2s,transform .2s;cursor:pointer;}
+.svc-row:hover{border-color:rgba(28,28,30,.2);transform:translateX(4px);}
+.svc-row-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.svc-row-title{font-size:17px;font-weight:500;color:var(--ink);}
+.svc-pill{font-size:11px;font-weight:500;padding:4px 12px;border-radius:100px;}
+.svc-row-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+.svc-types{display:flex;flex-wrap:wrap;gap:6px;}
+.svc-type{font-size:11px;background:var(--bg);border:1px solid var(--border);color:var(--ink2);padding:4px 12px;border-radius:100px;}
+
+/* CONTENT TYPES */
+.content-types{padding:100px 48px;background:var(--sage-light);}
+.ct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px;}
+.ct-card{background:var(--white);border-radius:20px;padding:26px 24px;border:1px solid rgba(28,28,30,.05);}
+.ct-icon{font-size:22px;margin-bottom:14px;}
+.ct-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:6px;}
+.ct-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.ct-formats{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
+.ct-fmt{font-size:10px;font-weight:500;padding:3px 9px;border-radius:100px;background:var(--bg);}
+
+/* HOW */
+.how{padding:100px 48px;background:var(--white);}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:56px;}
+.how-steps{display:flex;flex-direction:column;gap:0;}
+.how-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);}
+.how-step:last-child{border:none;}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--peach);line-height:1;flex-shrink:0;width:32px;}
+.step-body .step-t{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px;}
+.step-body .step-d{font-size:13px;color:var(--muted);line-height:1.6;}
+.how-right{background:var(--peach-light);border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:16px;}
+.how-quote{font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;color:var(--ink);line-height:1.35;margin-bottom:8px;}
+.how-attr{font-size:13px;color:var(--muted);}
+.how-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.how-tag{font-size:11px;font-weight:500;padding:5px 12px;border-radius:100px;}
+
+/* WHY */
+.why{padding:100px 48px;background:var(--bg);}
+.why-bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:14px;margin-top:52px;}
+.wb{border-radius:22px;padding:32px;}
+.wb-big{grid-column:1 / span 2;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;}
+.wb-big .wb-h{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;line-height:1.2;color:#fff;}
+.wb-big .wb-h em{color:var(--peach);font-style:italic;}
+.wb-big .wb-p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-top:12px;}
+.wb-right{background:var(--lavender-light);display:flex;flex-direction:column;justify-content:space-between;}
+.wb-sage{background:var(--sage-light);}
+.wb-peach{background:var(--peach-light);}
+.wb-rose{background:var(--rose-light);}
+.wb-lemon{grid-column:2 / span 2;background:var(--lemon-light);}
+.wb-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;line-height:1;color:var(--ink);}
+.wb-label{font-size:13px;font-weight:500;color:var(--ink);margin-top:8px;}
+.wb-sub{font-size:12px;color:var(--muted);line-height:1.55;margin-top:4px;}
+.wb-lemon .wb-inner{display:flex;align-items:center;gap:40px;}
+
+/* CTA */
+.cta{padding:100px 48px;background:var(--peach-light);text-align:center;}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:600;line-height:1.1;color:var(--ink);margin-bottom:14px;}
+.cta h2 em{color:var(--accent);font-style:italic;}
+.cta p{font-size:16px;color:var(--muted);max-width:460px;margin:0 auto 36px;line-height:1.65;}
+.cta-row{display:flex;gap:12px;justify-content:center;}
+
+footer{background:var(--ink);padding:56px 48px 32px;}
+.ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:10px;}
+.ft-logo span{color:var(--peach);font-style:italic;}
+.ft-about{font-size:13px;color:rgba(255,255,255,.4);line-height:1.65;}
+.ft-col-h{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);margin-bottom:14px;}
+.ft-links{display:flex;flex-direction:column;gap:9px;}
+.ft-links a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:color .15s;}
+.ft-links a:hover{color:#fff;}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.3);}
+.ft-pills{display:flex;gap:8px;}
+.ft-pill{font-size:10px;font-weight:500;padding:4px 11px;border-radius:100px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);}
+
+/* section util */
+.sec-tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:600;line-height:1.15;color:var(--ink);}
+.sec-h2 em{color:var(--accent);font-style:italic;}
+</style>
+
+<nav>
+  <div class="logo">Eon <span>Echo</span> Media</div>
+  <div class="nav-links">
+    <a onclick="document.getElementById('niches').scrollIntoView({behavior:'smooth'})">What we cover</a>
+    <a onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Services</a>
+    <a onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Our process</a>
+    <a onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">Studio</a>
+  </div>
+  <button class="nav-cta" onclick="sendPrompt('I want to get in touch with Eon Echo Media')">Work with us</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> A content studio for every story</div>
+    <h1 class="hero-h1">
+      Stories that <em>move</em><br>people, across<br>every <span class="ruled">medium</span>
+    </h1>
+    <p class="hero-sub">
+      Eon Echo is a full-spectrum content studio producing <strong>digital and print marketing</strong> across more than 10 industries. From long-form editorial to social-first campaigns, we make content that earns attention.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-dark" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore our work</button>
+      <button class="btn-line" onclick="document.getElementById('niches').scrollIntoView({behavior:'smooth'})">See our niches</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Industries served</div></div>
+      <div class="stat"><div class="stat-n">Print &amp; Digital</div><div class="stat-l">Both mediums, one studio</div></div>
+      <div class="stat"><div class="stat-n">End-to-end</div><div class="stat-l">Strategy to production</div></div>
+    </div>
+  </div>
+
+  <!-- 3D HERO RIGHT -->
+  <div class="hero-right">
+    <div class="hero-blob hb1"></div>
+    <div class="hero-blob hb2"></div>
+    <div class="hero-blob hb3"></div>
+
+    <div class="scene-3d">
+      <div class="cards-wrap">
+        <!-- back placeholder card -->
+        <div class="img-card card-back"></div>
+
+        <!-- mid card: magazine / print -->
+        <div class="img-card card-mid">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=520&q=80&auto=format&fit=crop"
+            alt="Print editorial magazine layout"
+            onerror="this.parentElement.style.background='var(--rose-light)';this.style.display='none'"
+          />
+          <div class="card-label">Print editorial</div>
+        </div>
+
+        <!-- front card: lifestyle / digital content -->
+        <div class="img-card card-front">
+          <img
+            src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=520&q=80&auto=format&fit=crop"
+            alt="Creative content studio workspace"
+            onerror="this.parentElement.style.background='var(--sky-light)';this.style.display='none'"
+          />
+          <div class="card-label">Digital content</div>
+        </div>
+      </div>
+
+      <!-- floating chips -->
+      <div class="float-chip chip1">
+        <span class="chip-dot" style="background:var(--accent2)"></span>
+        10+ niches covered
+      </div>
+      <div class="float-chip chip2">
+        <span class="chip-dot" style="background:var(--accent)"></span>
+        Print and digital
+      </div>
+      <div class="float-chip chip3">
+        <span class="chip-dot" style="background:var(--lavender)"></span>
+        End-to-end studio
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item"><span class="marquee-dot"></span>Blog writing</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Magazine production</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Social media content</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Email marketing</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Brand storytelling</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Print advertising</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Video scripts</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SEO content</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Whitepapers</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Campaign strategy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Catalogue design</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Newsletter production</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Blog writing</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Magazine production</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Social media content</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Email marketing</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Brand storytelling</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Print advertising</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Video scripts</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SEO content</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Whitepapers</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Campaign strategy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Catalogue design</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Newsletter production</span>
+  </div>
+</div>
+
+<!-- NICHES -->
+<section class="niches" id="niches">
+  <div class="niches-top">
+    <div class="niches-intro">
+      <div class="sec-tag">Industries we cover</div>
+      <h2 class="sec-h2">Deep expertise<br>across every <em>sector</em></h2>
+    </div>
+    <p class="niches-note">We don't generalise. Every niche gets a writer, strategist, and editor who lives and breathes that world.</p>
+  </div>
+  <div class="niche-grid">
+    <div class="niche-tile" style="background:var(--sage-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="niche-name">Fashion &amp; Lifestyle</div><div class="niche-sub">Editorial, trend reports, brand stories</div></div>
+    <div class="niche-tile" style="background:var(--sky-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2A6B8A" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div class="niche-name">Finance &amp; Fintech</div><div class="niche-sub">Thought leadership, investor comms</div></div>
+    <div class="niche-tile" style="background:var(--rose-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8A3A4A" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="niche-name">Healthcare</div><div class="niche-sub">Patient education, clinical brands</div></div>
+    <div class="niche-tile" style="background:var(--peach-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="niche-name">Real Estate</div><div class="niche-sub">Property, architecture, development</div></div>
+    <div class="niche-tile" style="background:var(--lavender-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5A3A8A" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="niche-name">Technology &amp; SaaS</div><div class="niche-sub">Product content, dev marketing</div></div>
+    <div class="niche-tile" style="background:var(--lemon-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8A6A00" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="niche-name">Food &amp; Hospitality</div><div class="niche-sub">Menus, campaigns, restaurant PR</div></div>
+    <div class="niche-tile" style="background:var(--sage-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.8"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div class="niche-name">Education &amp; EdTech</div><div class="niche-sub">Course content, institution branding</div></div>
+    <div class="niche-tile" style="background:var(--sky-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2A6B8A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="niche-name">Travel &amp; Tourism</div><div class="niche-sub">Destination guides, travel PR</div></div>
+    <div class="niche-tile" style="background:var(--rose-light)"><div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8A3A4A" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div><div class="niche-name">D2C &amp; E-commerce</div><div class="niche-sub">Product copy, conversion content</div></div>
+    <div class="niche-more"><div class="niche-more-num">+4</div><div class="niche-more-label">more niches</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-tag">What we produce</div>
+  <h2 class="sec-h2">Content for every<br><em>channel</em> and medium</h2>
+  <div class="services-layout">
+    <div class="services-sticky">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1.3">From a single article to an entire editorial universe.</h3>
+      <p>We work as a natural extension of your team, handling strategy, writing, design, and distribution across digital and print.</p>
+      <button class="btn-dark" style="margin-top:24px" onclick="sendPrompt('I want to discuss a content project with Eon Echo Media')">Start a conversation</button>
+    </div>
+    <div class="svc-list">
+      <div class="svc-row"><div class="svc-row-top"><span class="svc-row-title">Digital content marketing</span><span class="svc-pill" style="background:var(--sky-light);color:#2A6B8A">Digital</span></div><div class="svc-row-desc">SEO-driven blogs, campaign copy, landing pages, email sequences, and social content built to drive measurable results across every digital touchpoint.</div><div class="svc-types"><span class="svc-type">Blog and SEO</span><span class="svc-type">Email</span><span class="svc-type">Social</span><span class="svc-type">Ad copy</span><span class="svc-type">Landing pages</span></div></div>
+      <div class="svc-row"><div class="svc-row-top"><span class="svc-row-title">Print media and publishing</span><span class="svc-pill" style="background:var(--peach-light);color:var(--accent)">Print</span></div><div class="svc-row-desc">End-to-end production of magazines, brand catalogues, annual reports, brochures, and direct mailers, from editorial strategy through to print-ready files.</div><div class="svc-types"><span class="svc-type">Magazines</span><span class="svc-type">Catalogues</span><span class="svc-type">Brochures</span><span class="svc-type">Annual reports</span><span class="svc-type">Mailers</span></div></div>
+      <div class="svc-row"><div class="svc-row-top"><span class="svc-row-title">Brand storytelling</span><span class="svc-pill" style="background:var(--lavender-light);color:#5A3A8A">Strategy</span></div><div class="svc-row-desc">We define your voice, narrative architecture, and content pillars, then build the content machine that tells your story consistently across every format.</div><div class="svc-types"><span class="svc-type">Brand voice</span><span class="svc-type">Messaging</span><span class="svc-type">Content strategy</span><span class="svc-type">Tone guides</span></div></div>
+      <div class="svc-row"><div class="svc-row-top"><span class="svc-row-title">Long-form and editorial</span><span class="svc-pill" style="background:var(--sage-light);color:var(--accent2)">Editorial</span></div><div class="svc-row-desc">Whitepapers, thought leadership pieces, case studies, research reports, and in-depth industry guides that establish your authority and earn trust.</div><div class="svc-types"><span class="svc-type">Whitepapers</span><span class="svc-type">Case studies</span><span class="svc-type">Reports</span><span class="svc-type">Thought leadership</span></div></div>
+      <div class="svc-row"><div class="svc-row-top"><span class="svc-row-title">Video and multimedia scripts</span><span class="svc-pill" style="background:var(--lemon-light);color:#8A6A00">Multimedia</span></div><div class="svc-row-desc">Scriptwriting for explainers, brand films, social video, podcasts, and documentary-style content, crafted to translate complex ideas into compelling watch-time.</div><div class="svc-types"><span class="svc-type">Explainers</span><span class="svc-type">Brand films</span><span class="svc-type">Podcast scripts</span><span class="svc-type">Reels</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT TYPES -->
+<section class="content-types" id="content-types">
+  <div style="text-align:center;max-width:520px;margin:0 auto;">
+    <div class="sec-tag" style="text-align:center">Every format, covered</div>
+    <h2 class="sec-h2">One studio.<br>Every <em>content format.</em></h2>
+  </div>
+  <div class="ct-grid">
+    <div class="ct-card"><div class="ct-icon">✍️</div><div class="ct-name">Written content</div><div class="ct-desc">Crafted with SEO, readability, and brand tone at the core.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--sage-light)">Blogs</span><span class="ct-fmt" style="background:var(--sage-light)">Articles</span><span class="ct-fmt" style="background:var(--sage-light)">Newsletters</span><span class="ct-fmt" style="background:var(--sage-light)">Guides</span></div></div>
+    <div class="ct-card"><div class="ct-icon">🎨</div><div class="ct-name">Visual and design</div><div class="ct-desc">Print layouts, infographics, and visual editorial direction.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--peach-light)">Magazines</span><span class="ct-fmt" style="background:var(--peach-light)">Infographics</span><span class="ct-fmt" style="background:var(--peach-light)">Print ads</span></div></div>
+    <div class="ct-card"><div class="ct-icon">📱</div><div class="ct-name">Social and short-form</div><div class="ct-desc">Platform-native content that earns engagement, not just impressions.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--sky-light)">Reels scripts</span><span class="ct-fmt" style="background:var(--sky-light)">Threads</span><span class="ct-fmt" style="background:var(--sky-light)">Captions</span></div></div>
+    <div class="ct-card"><div class="ct-icon">🎙️</div><div class="ct-name">Multimedia</div><div class="ct-desc">Scripts and show notes for every audio and video format.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--lavender-light)">Podcasts</span><span class="ct-fmt" style="background:var(--lavender-light)">Explainers</span><span class="ct-fmt" style="background:var(--lavender-light)">Brand films</span></div></div>
+    <div class="ct-card"><div class="ct-icon">📊</div><div class="ct-name">Authority content</div><div class="ct-desc">Research-backed content that positions your brand as the expert.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--lemon-light)">Whitepapers</span><span class="ct-fmt" style="background:var(--lemon-light)">Case studies</span><span class="ct-fmt" style="background:var(--lemon-light)">Reports</span></div></div>
+    <div class="ct-card"><div class="ct-icon">📧</div><div class="ct-name">Email and CRM</div><div class="ct-desc">Sequences and campaigns built for open rates and conversions.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--rose-light)">Drip campaigns</span><span class="ct-fmt" style="background:var(--rose-light)">Newsletters</span><span class="ct-fmt" style="background:var(--rose-light)">Nurture</span></div></div>
+    <div class="ct-card"><div class="ct-icon">🛍️</div><div class="ct-name">Commerce content</div><div class="ct-desc">Product descriptions, category pages, and conversion-led copy.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--peach-light)">Product copy</span><span class="ct-fmt" style="background:var(--peach-light)">Landing pages</span><span class="ct-fmt" style="background:var(--peach-light)">Ad copy</span></div></div>
+    <div class="ct-card"><div class="ct-icon">🗞️</div><div class="ct-name">PR and comms</div><div class="ct-desc">Press releases, media pitches, and crisis communication drafts.</div><div class="ct-formats"><span class="ct-fmt" style="background:var(--sky-light)">Press releases</span><span class="ct-fmt" style="background:var(--sky-light)">Media kits</span><span class="ct-fmt" style="background:var(--sky-light)">Pitches</span></div></div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="how" id="how">
+  <div class="sec-tag">Our process</div>
+  <h2 class="sec-h2">How we turn a brief<br>into <em>content that works</em></h2>
+  <div class="how-grid">
+    <div class="how-steps">
+      <div class="how-step"><div class="step-n">01</div><div class="step-body"><div class="step-t">Understand your world</div><div class="step-d">A deep-dive into your brand, audience, competitors, and the story you need to tell. No templates, no shortcuts.</div></div></div>
+      <div class="how-step"><div class="step-n">02</div><div class="step-body"><div class="step-t">Build your content strategy</div><div class="step-d">We map content pillars, formats, channels, and a publishing cadence that is ambitious but sustainable.</div></div></div>
+      <div class="how-step"><div class="step-n">03</div><div class="step-body"><div class="step-t">Create and produce</div><div class="step-d">Your dedicated team of writers, editors, and designers produce content that is reviewed, refined, and ready.</div></div></div>
+      <div class="how-step"><div class="step-n">04</div><div class="step-body"><div class="step-t">Measure and evolve</div><div class="step-d">We track what is working, report transparently, and continuously improve the content mix as your brand grows.</div></div></div>
+    </div>
+    <div class="how-right">
+      <div class="how-quote">"The best content does not interrupt people. It is what they were looking for."</div>
+      <div class="how-attr">The Eon Echo editorial philosophy</div>
+      <div class="how-tags">
+        <span class="how-tag" style="background:var(--sage-light);color:var(--accent2)">Human-written</span>
+        <span class="how-tag" style="background:var(--sky-light);color:#2A6B8A">Research-backed</span>
+        <span class="how-tag" style="background:var(--peach-light);color:var(--accent)">Brand-true</span>
+        <span class="how-tag" style="background:var(--lavender-light);color:#5A3A8A">Strategy-led</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="sec-tag">Why Eon Echo</div>
+  <h2 class="sec-h2">The studio built for<br><em>modern media</em></h2>
+  <div class="why-bento">
+    <div class="wb wb-big">
+      <div class="wb-h">The only studio covering <em>digital and print</em> with equal depth.</div>
+      <div class="wb-p">Most agencies chose a side. We believe the best brands live in both worlds, and we are built to produce for both, from one studio, under one strategy.</div>
+    </div>
+    <div class="wb wb-right">
+      <div class="wb-num" style="color:var(--lavender)">10+</div>
+      <div class="wb-label">Industry verticals</div>
+      <div class="wb-sub">Specialists in every niche, not generalists guessing.</div>
+    </div>
+    <div class="wb wb-sage">
+      <div class="wb-num" style="color:var(--accent2)">End-to-end</div>
+      <div class="wb-label">Strategy to production</div>
+      <div class="wb-sub">Brief to published. We handle the full content lifecycle.</div>
+    </div>
+    <div class="wb wb-peach">
+      <div class="wb-num" style="color:var(--accent)">India-first</div>
+      <div class="wb-label">Built for Indian brands</div>
+      <div class="wb-sub">Understanding Indian audiences, languages, and market nuances from day one.</div>
+    </div>
+    <div class="wb wb-lemon">
+      <div class="wb-inner">
+        <div><div class="wb-num" style="color:var(--accent2)">Human</div><div class="wb-label">Every word, written by people</div><div class="wb-sub" style="max-width:280px">Real writers, real editors, real strategists. Content that sounds like your brand, not a template.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <h2>Let us tell your<br><em>story together</em></h2>
+  <p>Whether you need a single campaign or an entire content operation, Eon Echo is ready to build it with you.</p>
+  <div class="cta-row">
+    <button class="btn-dark" onclick="sendPrompt('I want to work with Eon Echo Media — how do we start?')">Start a project</button>
+    <button class="btn-line" onclick="sendPrompt('What does working with Eon Echo Media look like?')">How we work</button>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-logo">Eon <span>Echo</span> Media</div>
+      <div class="ft-about">A full-spectrum content studio producing digital and print marketing across more than 10 industries. Mumbai, India.</div>
+    </div>
+    <div>
+      <div class="ft-col-h">Services</div>
+      <div class="ft-links"><a>Digital content</a><a>Print and publishing</a><a>Brand storytelling</a><a>Long-form and editorial</a><a>Video scripts</a></div>
+    </div>
+    <div>
+      <div class="ft-col-h">Industries</div>
+      <div class="ft-links"><a>Fashion and Lifestyle</a><a>Finance and Fintech</a><a>Healthcare</a><a>Real Estate</a><a>Technology</a><a>View all</a></div>
+    </div>
+    <div>
+      <div class="ft-col-h">Studio</div>
+      <div class="ft-links"><a>About</a><a>Our work</a><a>Process</a><a>Blog</a><a>Contact</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2025 Eon Echo Media. Mumbai, India.</div>
+    <div class="ft-pills"><span class="ft-pill">Content studio</span><span class="ft-pill">Digital and Print</span><span class="ft-pill">10+ niches</span></div>
+  </div>
+</footer>
+
+<script>
+// Cycle through 3 different image pairs on the cards every 4 seconds
+const imageSets = [
+  {
+    mid: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=520&q=80&auto=format&fit=crop",
+    midLabel: "Print editorial",
+    front: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=520&q=80&auto=format&fit=crop",
+    frontLabel: "Digital content"
+  },
+  {
+    mid: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=520&q=80&auto=format&fit=crop",
+    midLabel: "Brand campaigns",
+    front: "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=520&q=80&auto=format&fit=crop",
+    frontLabel: "Content strategy"
+  },
+  {
+    mid: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=520&q=80&auto=format&fit=crop",
+    midLabel: "Magazine production",
+    front: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=520&q=80&auto=format&fit=crop",
+    frontLabel: "Editorial writing"
+  }
+];
+let imgIdx = 0;
+const midCard = document.querySelector('.card-mid');
+const frontCard = document.querySelector('.card-front');
+
+function cycleImages() {
+  imgIdx = (imgIdx + 1) % imageSets.length;
+  const set = imageSets[imgIdx];
+
+  [midCard, frontCard].forEach(card => {
+    card.style.opacity = '0';
+    card.style.transition = 'opacity 0.5s ease';
+  });
+
+  setTimeout(() => {
+    const midImg = midCard.querySelector('img');
+    const midLabel = midCard.querySelector('.card-label');
+    if (midImg) { midImg.src = set.mid; midImg.alt = set.midLabel; }
+    if (midLabel) midLabel.textContent = set.midLabel;
+
+    const frontImg = frontCard.querySelector('img');
+    const frontLabel = frontCard.querySelector('.card-label');
+    if (frontImg) { frontImg.src = set.front; frontImg.alt = set.frontLabel; }
+    if (frontLabel) frontLabel.textContent = set.frontLabel;
+
+    [midCard, frontCard].forEach(card => { card.style.opacity = '1'; });
+  }, 500);
+}
+
+setInterval(cycleImages, 4000);
+
+// Subtle mouse parallax on the hero right panel
+const heroRight = document.querySelector('.hero-right');
+const cardsWrap = document.querySelector('.cards-wrap');
+if (heroRight && cardsWrap) {
+  heroRight.addEventListener('mousemove', (e) => {
+    const rect = heroRight.getBoundingClientRect();
+    const cx = (e.clientX - rect.left) / rect.width - 0.5;
+    const cy = (e.clientY - rect.top) / rect.height - 0.5;
+    cardsWrap.style.transform = `rotateX(${6 - cy * 8}deg) rotateY(${-10 + cx * 12}deg)`;
+    cardsWrap.style.transition = 'transform 0.1s ease';
+  });
+  heroRight.addEventListener('mouseleave', () => {
+    cardsWrap.style.transform = '';
+    cardsWrap.style.transition = 'transform 0.8s ease';
+  });
+}
+</script>
