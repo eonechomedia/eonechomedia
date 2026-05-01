@@ -106,7 +106,7 @@ function showToast(message) {
 
 function sendPrompt(promptText) {
   try {
-    const email = 'hello@eonechomedia.com';
+    const email = 'jd@eonechomedia.com';
     const subject = encodeURIComponent(promptText);
     const body = encodeURIComponent(promptText + '\n\nPlease get back to me.');
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
