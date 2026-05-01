@@ -232,9 +232,9 @@ function showContactOptions() {
     </div>
 
     <div style="display:flex;flex-direction:column;gap:12px;margin-top:10px;">
-      <button id="modal-insta" style="background:#E1306C;color:#fff;border:none;padding:14px 18px;border-radius:10px;font-weight:600;cursor:pointer;font-size:15px;">
-        Follow eonechomedia on Instagram
-      </button>
+     <button id="modal-insta" style="border:none;padding:14px 18px;border-radius:10px;font-weight:600;cursor:pointer;font-size:15px;" class="instagram-btn">
+        Follow @eonechomedia on Instagram
+        </button>
 
       <button id="modal-email" style="background:var(--ink);color:#fff;border:none;padding:12px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-size:14px;">
         Email us — start a project

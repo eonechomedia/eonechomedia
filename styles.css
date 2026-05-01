@@ -888,3 +888,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+.instagram-btn {
+  background: linear-gradient(135deg, #6a11cb, #ff6a88);
+  color: white;
+}
