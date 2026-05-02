@@ -4,12 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eon Echo Media</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <!-- Primary SEO -->
   <title>Eon Echo Media | Content Marketing Agency India — Digital & Print</title>
   <meta name="description"
@@ -53,7 +47,10 @@
   <link rel="icon" type="image/jpeg" href="./eonechomedia.jpg">
   <link rel="apple-touch-icon" href="./eonechomedia.jpg">
 
-  <!-- Stylesheet -->
+  <!-- Add this to <head> BEFORE styles.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="./styles.css">
 
   <!-- Schema.org structured data -->
@@ -119,20 +116,26 @@
     ]
   }
   </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WKE32CJ12W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WKE32CJ12W');
+</script>
 </head>
 
 <body>
-  <link rel="icon" href="./eonechomedia.jpg">
-  <!-- Google tag (gtag.js) -->
-
 
   <nav>
     <div class="logo">Eon <span>Echo</span> Media</div>
     <div class="nav-links">
-      <a onclick="document.getElementById('niches').scrollIntoView({behavior:'smooth'})">What we cover</a>
-      <a onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Services</a>
-      <a onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Our process</a>
-      <a onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">Studio</a>
+      <a href="#niches" onclick="document.getElementById('niches').scrollIntoView({behavior:'smooth'})">What we cover</a>
+      <a href="#services" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Services</a>
+      <a href="#how" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Our process</a>
+      <a href="#why" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">Studio</a>
     </div>
     <button class="nav-cta" onclick="showContactOptions()">Work with us</button>
   </nav>
@@ -140,10 +143,13 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <div class="eyebrow"><span class="eyebrow-dot"></span> A content studio for every story</div>
-      <h1 class="hero-h1">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> India's content studio for every story</div>
+      <!-- <h1 class="hero-h1">
         Stories that <em>move</em><br>people, across<br>every <span class="ruled">medium</span>
-      </h1>
+      </h1> -->
+     <h1 class="hero-h1">
+  Content that <em>moves</em><br>people, across<br>every <span class="ruled">medium</span>
+</h1>
       <p class="hero-sub">
         Eon Echo is a full-spectrum content studio producing <strong>digital and print marketing</strong> across more
         than 10 industries. From long-form editorial to social-first campaigns, we make content that earns attention.
@@ -184,7 +190,7 @@
           <!-- mid card: magazine / print -->
           <div class="img-card card-mid">
             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=520&q=80&auto=format&fit=crop"
-              alt="Print editorial magazine layout"
+             alt="Eon Echo Media print editorial magazine production India"
               onerror="this.parentElement.style.background='var(--rose-light)';this.style.display='none'" />
             <div class="card-label">Print editorial</div>
           </div>
@@ -192,7 +198,7 @@
           <!-- front card: lifestyle / digital content -->
           <div class="img-card card-front">
             <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=520&q=80&auto=format&fit=crop"
-              alt="Creative content studio workspace"
+              alt="Eon Echo Media content studio workspace Mumbai"
               onerror="this.parentElement.style.background='var(--sky-light)';this.style.display='none'" />
             <div class="card-label">Digital content</div>
           </div>
