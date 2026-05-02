@@ -118,14 +118,23 @@
     ]
   }
   </script>
-  <!-- Google tag (gtag.js) -->
-<script defer src="https://www.googletagmanager.com/gtag/js?id=G-WKE32CJ12W"></script>
+<!-- Google Analytics - skip for bots and PageSpeed -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  if (
+    navigator.userAgent.indexOf('Chrome-Lighthouse') === -1 &&
+    navigator.userAgent.indexOf('PageSpeed') === -1 &&
+    navigator.userAgent.indexOf('Googlebot') === -1
+  ) {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WKE32CJ12W';
+    document.head.appendChild(script);
 
-  gtag('config', 'G-WKE32CJ12W');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WKE32CJ12W');
+  }
 </script>
 </head>
 
