@@ -4,3 +4,12 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# Astro files
+node_modules/
+dist/
+.astro/
+
+# Nuxt files
+.nuxt/
+.output/

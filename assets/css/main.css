@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 :root {
   --bg: #FAFAF7;
@@ -61,6 +65,9 @@ nav {
   transition: color .2s;
 }
 .nav-links a:hover { color: var(--ink); }
+.nav-links a.router-link-active,
+.nav-links a.router-link-exact-active,
+.nav-links a.active { color: var(--accent); font-weight: 600; }
 .nav-cta {
   background: var(--ink);
   color: #fff;
@@ -900,4 +907,20 @@ footer {
   overflow: hidden;
   clip: rect(0,0,0,0);
   border: 0;
+}
+/* Blog styles overrides for unified light theme */
+:root {
+  --blogBg: var(--bg);
+  --blogSurface: var(--white);
+  --blogBorder: var(--border);
+  --blogAccent: var(--accent);
+  --blogText: var(--ink);
+  --blogMuted: var(--muted);
+}
+
+.blog-view {
+  background-color: var(--blogBg);
+  color: var(--blogText);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.6;
 }
