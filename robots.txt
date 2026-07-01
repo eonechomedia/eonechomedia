@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://eonechomedia.com/sitemap.xml
