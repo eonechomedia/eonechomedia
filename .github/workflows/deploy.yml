@@ -45,6 +45,12 @@ jobs:
           PUBLIC_FIREBASE_MESSAGING_SENDER_ID:   ${{ secrets.PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
           PUBLIC_FIREBASE_APP_ID:                ${{ secrets.PUBLIC_FIREBASE_APP_ID }}
 
+      # GitHub Pages returns 404 for any path that isn't a real file.
+      # Copying index.html → 404.html makes GitHub Pages serve our SPA
+      # for ALL routes, letting Nuxt's client-side router handle navigation.
+      - name: Create SPA 404 fallback
+        run: cp .output/public/index.html .output/public/404.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
