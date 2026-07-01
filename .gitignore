@@ -13,3 +13,6 @@ dist/
 # Nuxt files
 .nuxt/
 .output/
+
+# Scratch/debug scripts
+db_tool.mjs

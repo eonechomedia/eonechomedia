@@ -19,6 +19,10 @@ export default defineNuxtConfig({
     }
   },
   app: {
+    // GitHub Pages custom domain → baseURL stays '/' (default)
+    // GitHub Pages subdirectory (e.g. username.github.io/eonechomedia/) →
+    //   add NUXT_APP_BASE_URL=/eonechomedia/ as a GitHub Actions secret
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       htmlAttrs: {
         lang: 'en'
