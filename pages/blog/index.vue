@@ -72,17 +72,24 @@ const allTags = computed(() => {
 })
 
 // Filtered posts logic
+
 const filteredPosts = computed(() => {
   if (!posts.value) return []
+
+  const query = searchQuery.value.trim().toLowerCase()
+  const selected = selectedTag.value.trim().toLowerCase()
+  
   return posts.value.filter(post => {
-    const matchesSearch = searchQuery.value.trim() === '' || 
-      post.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      (post.excerpt || '').toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      (post.tags || []).some(t => t.toLowerCase().includes(searchQuery.value.toLowerCase()))
-    
-    const matchesTag = selectedTag.value === '' || 
-      (post.tags || []).includes(selectedTag.value)
-      
+    const title = String(post.title || '').toLowerCase()
+    const excerpt = String(post.excerpt || '').toLowerCase()
+    const tags = (post.tags || []).map(tag => String(tag).trim().toLowerCase())
+    const matchesSearch =
+      !query ||
+      title.includes(query) ||
+      excerpt.includes(query) ||
+      tags.some(tag => tag.includes(query))
+
+    const matchesTag = !selected || tags.includes(selected)
     return matchesSearch && matchesTag
   })
 })
@@ -91,7 +98,7 @@ const filteredPosts = computed(() => {
 const featuredPost = computed(() => {
   if (!posts.value || posts.value.length === 0) return null
   // Only display featured post if we aren't searching/filtering
-  if (searchQuery.value !== '' || selectedTag.value !== '') return null
+  // if (searchQuery.value !== '' || selectedTag.value !== '') return null
   
   // Find a post marked as featured
   const featured = posts.value.find(p => p.isFeatured === true)
@@ -107,7 +114,8 @@ const gridPosts = computed(() => {
   if (!list.length) return []
   if (featuredPost.value) {
     // Exclude the featured post by ID to avoid duplication
-    return list.filter(p => p.id !== featuredPost.value!.id)
+     return list
+    // return list.filter(p => p.id !== featuredPost.value!.id)
   }
   return list
 })
@@ -215,7 +223,7 @@ function formatDate(dateStr?: string) {
           <button 
             v-for="tag in allTags" 
             :key="tag"
-            @click="selectTag(tag)"
+            @click="selectTag(tag)"  
             :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all duration-200', 
               selectedTag === tag 
                 ? 'bg-[#D4622A] text-white border-transparent shadow-sm' 
