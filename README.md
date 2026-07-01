@@ -1,4 +1,4 @@
-# Eon Echo Media - Blog Integration
+# Eon Echo Media
 
 This repository hosts the official website of Eon Echo Media, now integrated with a statically generated blog system powered by **Astro** and **Firebase Firestore**.
 
